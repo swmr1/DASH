@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style type="text/css">
+    /*<![CDATA[*/
+    #myInstance1 {
+        border: 2px dashed #0000ff;
+    }
+    .nicEdit-selected {
+        border: 2px solid #0000ff !important;
+    }
+
+    .nicEdit-panel {
+        background-color: #fff !important;
+    }
+
+    .nicEdit-button {
+        background-color: #fff !important;
+    }
+    /*]]>*/
+</style><div id="sample">
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+    //<![CDATA[
+    bkLib.onDomLoaded(function() {
+        var myNicEditor = new nicEditor();
+        myNicEditor.setPanel('myNicPanel');
+        myNicEditor.addInstance('myInstance1');
+
+    });
+    //]]>
+</script> This is text above the Panel
+    <div id="myNicPanel" style="width: 350px;"></div>This is text below the Panel<br />
+    <br />
+    <h4>
+        Selected Style Example
+    </h4>
+    <div id="myInstance1" style="font-size: 16px; background-color: #ccc; padding: 3px; width: 400px;">
+        \rtf1\ansi \f0\fnil Monospaced; \colortbl\red0\green0lue0;\red255\green204lue102;\red77\green51lue153;
+
+        \cf0 test \i\ul test\i0\ul0 test\cf0 \~ safddd\cf0\~ \~
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: SimInternal
+ * Date: 11/13/2018
+ * Time: 10:04 AM
+ */
+
+include ("../AuditLog.php");
+session_start();
+//echo var_dump($_GET);
+
+$outofcounty = $_GET["notFromBrevard"];
+
+$ooc = 0;
+if ($outofcounty == 'on'){
+    $ooc = 1;
+}
+
+$conReferrals = new mysqli('localhost', $_SESSION['username'], $_SESSION['password'], 'Referrals');
+$query = "INSERT INTO Referrals.RecordRequest (PatientID, Requester, Status, Auth, Reason, LastMD, LastProvider, outOfCounty) VALUES
+          ('" . $_SESSION['currentPatient'] . "', '" . $_GET['requester'] . "', '" . $_GET['status'] . "', '" . $_GET['authorization'] . "', '" . str_replace("'", "\'", $_GET['Reason']) . "', '" . str_replace("'", "\'", $_GET['MD']) . "', '" . str_replace("'", "\'", $_GET['Reason']) . "', '" . $ooc ."')";
+
+$result = $conReferrals->query($query);
+echo $conReferrals->error;
+$audit = new AuditLog;
+$string = "New record request created for " . $_SESSION[patientName] . " Requester is " . $_GET['requester'] . " Status " . $_GET['status'] . " Authorization " . $_GET['authorization'] . " Reason " . str_replace("'", "\'", $_GET['Reason']);
+echo $string;
+$audit->SetChange($string);
+
+//header($_SESSION['previous']);
+
+
+
+
